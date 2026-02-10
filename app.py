@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
-from vector_storage import get_matches 
+import asyncio
+from vector_storage import get_matches
+from job_scraper import scrape_dice_jobs 
 
 st.set_page_config(page_title="Job Matcher", layout="wide")
 
@@ -10,14 +12,25 @@ st.subheader("Matching")
 with st.sidebar:
     st.header("Search Filters")
     num_results = st.slider("Number of matches to show", 1, 10, 5)
+    
     if st.button("Refresh Database"):
-        st.info("New scrape...") 
+        with st.status("Scraping Dice.com...", expanded=True) as status:
+            st.write("Initializing browser...")
+            try:
 
-my_profile = "B.A. Computing and Informatics, Application Support, SQL, AWS, Python."
+                asyncio.run(scrape_dice_jobs("Application Support", "New Jersey"))
+                
+                status.update(label="Scrape Complete!", state="complete", expanded=False)
+                st.success("Database updated! Reloading matches...")
+                st.rerun()
+            except Exception as e:
+                st.error(f"Scraper failed: {e}")
+
+my_profile = "B.A. Computing and Informatics, Application Support, SQL, AWS, Python, Security+."
 
 results = get_matches(my_profile, n_results=num_results)
 
-if results['ids'][0]:
+if results and results['ids'] and results['ids'][0]:
     for i in range(len(results['ids'][0])):
         score = (1 - results['distances'][0][i]) * 100
         
@@ -26,9 +39,10 @@ if results['ids'][0]:
             with col1:
                 st.markdown(f"### {results['metadatas'][0][i]['title']}")
                 st.caption(f"Company: {results['metadatas'][0][i]['company']}")
+                # Show first 300 characters of description
                 st.write(results['documents'][0][i][:300] + "...")
             with col2:
                 st.metric("Match Quality", f"{score:.1f}%")
             st.divider()
 else:
-    st.write("No jobs found. Run the scraper")
+    st.info("No jobs found in database. Click 'Refresh Database' to start a search.")
