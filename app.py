@@ -1,10 +1,25 @@
 import streamlit as st
 import pandas as pd
 import asyncio
+import subprocess
+import sys 
 from vector_storage import get_matches
 from job_scraper import scrape_dice_jobs 
 
 st.set_page_config(page_title="Job Matcher", layout="wide")
+
+
+def install_playwright_browser():
+    try:
+        subprocess.run(["playwright", "install", "chromium"], check=True)
+        print("Playwright browser installed")
+    except Exception as e:
+        print(f"Error installing browser {e}")
+
+if "browser_installed" not in st.session_state:
+    with st.spinner("Setting up browser engine... (This happens once)"):
+        install_playwright_browser()
+        st.session_state.browser_installed = True
 
 st.title("Job Recommendations")
 st.subheader("Matching")
@@ -39,7 +54,6 @@ if results and results['ids'] and results['ids'][0]:
             with col1:
                 st.markdown(f"### {results['metadatas'][0][i]['title']}")
                 st.caption(f"Company: {results['metadatas'][0][i]['company']}")
-                # Show first 300 characters of description
                 st.write(results['documents'][0][i][:300] + "...")
             with col2:
                 st.metric("Match Quality", f"{score:.1f}%")
