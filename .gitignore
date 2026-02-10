@@ -1,0 +1,13 @@
+# Python environment
+venv/
+__pycache__/
+*.py[cod]
+
+# Streamlit secrets (Crucial for security!)
+.streamlit/secrets.toml
+
+# macOS system files
+.DS_Store
+
+# Local database storage
+job_search_db/
