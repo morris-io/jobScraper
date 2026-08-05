@@ -11,13 +11,14 @@ collection = client.get_or_create_collection(
     embedding_function=emb_fn
 )
 
-def add_job(job_id, title, company, description):
-    collection.add(
+# FIXED: Added 'url' parameter and changed .add() to .upsert()
+def add_job(job_id, title, company, description, url):
+    collection.upsert(
         documents=[description],
-        metadatas=[{"title": title, "company": company}],
+        metadatas=[{"title": title, "company": company, "url": url}],
         ids=[job_id]
     )
-    print(f"Added {title} at {company} to the database.")
+    print(f"Saved: {title}")
 
 def get_matches(resume_text, n_results=5):
     results = collection.query(

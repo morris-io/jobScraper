@@ -2,14 +2,18 @@ import streamlit as st
 import google.generativeai as genai
 import os
 
-# This works locally from secrets.toml AND in the cloud from the dashboard
-if "GOOGLE_API_KEY" in st.secrets:
-    OS_API_KEY = st.secrets["GOOGLE_API_KEY"]
-else:
-    # Fallback for local testing if not using st.secrets
-    OS_API_KEY = os.getenv("GOOGLE_API_KEY")
+def get_api_key():
+    # FIXED: Added quotes around "GOOGLE_API_KEY"
+    if "GOOGLE_API_KEY" in st.secrets:
+        return st.secrets["GOOGLE_API_KEY"]
+    return os.getenv("GOOGLE_API_KEY")
 
-genai.configure(api_key=OS_API_KEY)
+def generate_application_materials(job_title, company, job_description, my_resume):
+    api_key = get_api_key()
+    if not api_key:
+        return "Error: Google API Key not found. Please check your secrets.toml or .env file."
+        
+    genai.configure(api_key=api_key)
 
 resume_text = """
 Michael J. Morris - Technical Support Engineer & System Reliability Specialist.

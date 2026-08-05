@@ -1,0 +1,41 @@
+Michael J. Morris
+Wildwood, NJ | 609-665-4737 | mchaelmorris@gmail.com | michaeljackmorris.com
+
+PROFESSIONAL SUMMARY
+Detail-oriented IT Support Specialist and CompTIA Security+ certified professional with a strong foundation in system administration and network infrastructure. Proven ability to solve complex technical issues, document workflows, and deliver reliable technical assistance to end-users.
+
+EXPERIENCE
+
+Technical Analyst | DataAnnotation | Remote | March 2026 - Present                                                                         
+- Evaluated application outputs and error logs to identify, document, and resolve software edge cases and logic errors.
+- Assessed AI generated code and tool use for secure logic based on NIST guidelines.  
+
+Web Support Specialist | East Coast Jewels | Remote | March 2024 - Present
+- Acted as the primary technical point of contact, diagnosing platform errors and resolving payment gateway disputes (Stripe) with an average same-day resolution time.
+- Diagnosed and resolved recurring checkout issues, contributing to a noticeable reduction in failed transactions and customer support escalations.
+- Performed manual regression testing across mobile and desktop, identifying and logging 10+ UI/UX issues impacting conversion flow.
+- Collaborated directly with a non-technical business owner, translating complex technical issues into clear solutions.
+
+
+PROJECTS
+Pick of Day Bot | Dec 2024 - Present
+- Deployed a serverless backend (AWS Lambda) while configuring API routes and MongoDB connectivity to support authenticated user access.
+- Monitored and troubleshot Stripe webhooks to resolve payment failures and ensure subscription synchronization.
+- Implemented Identity and Access Management (IAM) using NextAuth.js to enforce role-based access controls to subscribed content.
+- Supported real users in a live production environment, requiring active monitoring, troubleshooting, and iteration.
+
+Fantasy Fairway | Full-Stack Developer | April 2024 - Present
+- Built cloud deployment pipelines on Vercel, managing CI/CD workflows and resolving build errors.
+- Managed third-party REST API integrations to fetch live PGA tour data.
+
+EDUCATION
+Bachelor's Computing and Informatics | Rowan University | 2025
+
+CERTIFICATIONS
+CompTIA Security+ | July 2026
+
+TECHNICAL SKILLS
+- Systems & Administration: Active Directory, Windows Server, Windows 11/10, macOS, Microsoft 365 (M365/O365), Hyper-V Virtualization, Group Policy, System Deployments, Technical Documentation
+- Networking & Infrastructure: Cisco Switches & Routers, TCP/IP, DNS Management, LAN/WAN Support, VPN Technologies, Remote Desktop / Remote Support Platforms
+- Security & Tools: CompTIA Security+, Identity & Access Management (IAM), Endpoint Security, Jira, Log Analysis, Splunk, NIST Guidelines Basics, AWS (EC2/S3), Command Line Interface (CLI)
+- Scripting & Data: Python, JavaScript, SQL (MySQL/MongoDB), PowerShell / Command Line, Git Version Control
